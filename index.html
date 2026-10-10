@@ -1,0 +1,395 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UstaTop — Найди своего мастера</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: white;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 10% 20%, #252080 0%, transparent 40%),
+    radial-gradient(ellipse at 90% 40%, #421080 0%, transparent 35%),
+    linear-gradient(135deg, #030817, #071b3b 55%, #020617);
+}
+
+.container {
+  width: min(1120px, 92%);
+  margin: auto;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 0;
+  gap: 20px;
+}
+
+.logo {
+  font-size: 29px;
+  font-weight: 800;
+  color: #60a5fa;
+}
+
+nav {
+  display: flex;
+  gap: 25px;
+}
+
+nav a {
+  color: #dbeafe;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #a78bfa;
+}
+
+button {
+  border: 0;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  border-radius: 12px;
+  padding: 14px 22px;
+  background: linear-gradient(100deg, #0ea5e9, #7c3aed);
+  transition: .25s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px #4f46e566;
+}
+
+.hero {
+  padding: 75px 0 65px;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  align-items: center;
+  gap: 35px;
+}
+
+.tag {
+  display: inline-block;
+  padding: 9px 14px;
+  border: 1px solid #4541a4;
+  background: #111b3b;
+  border-radius: 30px;
+  color: #c4b5fd;
+  margin-bottom: 22px;
+}
+
+h1 {
+  font-size: clamp(38px, 5vw, 61px);
+  line-height: 1.08;
+  margin-bottom: 22px;
+}
+
+h1 span {
+  color: #818cf8;
+}
+
+.hero p {
+  color: #b7c5df;
+  font-size: 18px;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.hero-image {
+  height: 360px;
+  border-radius: 28px;
+  background:
+    linear-gradient(0deg, #07152de8, transparent 75%),
+    url("https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1000&q=85")
+    center / cover;
+  border: 1px solid #354b80;
+  box-shadow: 0 0 60px #4338ca35;
+}
+
+.search {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 12px;
+  padding: 17px;
+  margin-bottom: 65px;
+  border: 1px solid #334775;
+  background: #101d3ddd;
+  border-radius: 20px;
+}
+
+.search input,
+.search select {
+  width: 100%;
+  min-width: 0;
+  padding: 16px;
+  color: white;
+  background: #1b2d50;
+  border: 1px solid #354c78;
+  border-radius: 12px;
+  outline: none;
+}
+
+.search select option {
+  color: white;
+  background: #101d3d;
+}
+
+h2 {
+  font-size: 32px;
+  margin-bottom: 25px;
+}
+
+.services {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 55px;
+}
+
+.card {
+  overflow: hidden;
+  border: 1px solid #243c67;
+  border-radius: 19px;
+  background: #081832dd;
+  transition: .3s;
+}
+
+.card:hover {
+  transform: translateY(-7px);
+  border-color: #818cf8;
+  box-shadow: 0 12px 35px #312e8130;
+}
+
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+}
+
+.card-content {
+  padding: 18px;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  font-size: 19px;
+}
+
+.card p {
+  color: #a9bad5;
+  line-height: 1.5;
+  font-size: 14px;
+  min-height: 42px;
+}
+
+.card button {
+  margin-top: 18px;
+  padding: 10px 16px;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 28px;
+  background: #0b1934;
+  border: 1px solid #1f355b;
+  border-radius: 20px;
+  margin-bottom: 60px;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.feature-icon {
+  font-size: 27px;
+}
+
+.feature p {
+  color: #a9bad5;
+  font-size: 13px;
+  margin-top: 7px;
+  line-height: 1.5;
+}
+
+footer {
+  border-top: 1px solid #263957;
+  text-align: center;
+  padding: 28px;
+  color: #91a4c2;
+}
+
+@media (max-width: 800px) {
+  nav { display: none; }
+  .hero { grid-template-columns: 1fr; padding-top: 40px; }
+  .hero-image { height: 260px; }
+  .services { grid-template-columns: repeat(2, 1fr); }
+  .features { grid-template-columns: 1fr; }
+  .search { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 430px) {
+  .services { grid-template-columns: 1fr; }
+  h2 { font-size: 27px; }
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<header>
+  <div class="logo">✦ UstaTop</div>
+  <nav>
+    <a href="#services">Услуги</a>
+    <a href="#about">О сервисе</a>
+    <a href="#masters">Мастерам</a>
+  </nav>
+  <button onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">
+    Найти мастера
+  </button>
+</header>
+
+<section class="hero">
+  <div>
+    <div class="tag">✦ Сервис поиска мастеров в Узбекистане</div>
+    <h1>Найдите надёжного мастера <span>рядом</span></h1>
+    <p>Проверенные специалисты для дома.
+       Быстро, удобно и без лишних звонков.</p>
+    <button onclick="document.getElementById('search').scrollIntoView({behavior:'smooth'})">
+      Найти специалиста →
+    </button>
+  </div>
+  <div class="hero-image" role="img" aria-label="Мастер за работой"></div>
+</section>
+
+<section class="search" id="search">
+  <input id="query" type="text" placeholder="Какая услуга нужна?">
+  <select id="city">
+    <option value="">Любой город</option>
+    <option>Ташкент</option>
+    <option>Самарканд</option>
+    <option>Бухара</option>
+    <option>Андижан</option>
+  </select>
+  <button onclick="searchServices()">Найти →</button>
+</section>
+
+<section id="services">
+  <h2>Популярные услуги</h2>
+  <div class="services">
+
+    <article class="card" data-name="сантехник сантехника трубы кран">
+      <img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=600&q=80" alt="Сантехнические работы">
+      <div class="card-content">
+        <h3>🔧 Сантехник</h3>
+        <p>Ремонт кранов, труб и установка сантехники.</p>
+        <button onclick="requestService('Сантехник')">Выбрать</button>
+      </div>
+    </article>
+
+    <article class="card" data-name="электрик электричество розетки свет">
+      <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=600&q=80" alt="Работа электрика">
+      <div class="card-content">
+        <h3>⚡ Электрик</h3>
+        <p>Розетки, освещение и электромонтаж.</p>
+        <button onclick="requestService('Электрик')">Выбрать</button>
+      </div>
+    </article>
+
+    <article class="card" data-name="уборка клининг чистота">
+      <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=600&q=80" alt="Уборка помещений">
+      <div class="card-content">
+        <h3>✨ Уборка</h3>
+        <p>Уборка квартир, домов и офисов.</p>
+        <button onclick="requestService('Уборка')">Выбрать</button>
+      </div>
+    </article>
+
+    <article class="card" data-name="ремонт строительство отделка">
+      <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=80" alt="Ремонт помещений">
+      <div class="card-content">
+        <h3>🏠 Ремонт</h3>
+        <p>Ремонт квартир, стен и помещений.</p>
+        <button onclick="requestService('Ремонт')">Выбрать</button>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section class="features" id="about">
+  <div class="feature">
+    <div class="feature-icon">🛡️</div>
+    <div><strong>Надёжные мастера</strong>
+      <p>Возможность проверки специалистов.</p>
+    </div>
+  </div>
+  <div class="feature">
+    <div class="feature-icon">⭐</div>
+    <div><strong>Отзывы клиентов</strong>
+      <p>Помогают выбирать исполнителей.</p>
+    </div>
+  </div>
+  <div class="feature" id="masters">
+    <div class="feature-icon">⚡</div>
+    <div><strong>Быстрый поиск</strong>
+      <p>Найдите нужную услугу в одном месте.</p>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<footer>© 2026 UstaTop · Найди своего мастера</footer>
+
+<script>
+function searchServices() {
+  const query = document.getElementById('query').value
+    .trim().toLowerCase();
+
+  let count = 0;
+
+  document.querySelectorAll('.card').forEach(card => {
+    const matches = !query ||
+      card.dataset.name.includes(query);
+
+    card.style.display = matches ? '' : 'none';
+    if (matches) count++;
+  });
+
+  document.getElementById('services').scrollIntoView({
+    behavior: 'smooth'
+  });
+
+  if (count === 0) {
+    alert('Услуги не найдены. Попробуйте другое название.');
+  }
+}
+
+function requestService(service) {
+  alert(
+    'Вы выбрали услугу: ' + service +
+    '\n\nЭто демонстрационная версия сайта. ' +
+    'Чтобы получать реальные заявки, нужно подключить форму и контакты мастеров.'
+  );
+}
+</script>
+</body>
+</html>
